@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>winden's page :3</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap");
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                min-height: 100vh;
+                background: #0a0a0a;
+                color: #e0e0e0;
+                font-family: "Space Grotesk", sans-serif;
+                line-height: 1.6;
+                padding-top: 80px;
+                position: relative;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: radial-gradient(
+                        circle at 20% 80%,
+                        rgba(255, 107, 107, 0.05) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 80% 20%,
+                        rgba(54, 162, 235, 0.05) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 40% 40%,
+                        rgba(255, 206, 84, 0.03) 0%,
+                        transparent 50%
+                    );
+                animation: bgShift 20s ease-in-out infinite;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            @keyframes bgShift {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 1rem 2rem;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid #222;
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #ff6b6b;
+                letter-spacing: 0.5px;
+                position: relative;
+            }
+
+            .logo-cursor {
+                display: inline-block;
+                background-color: #ff6b6b;
+                width: 2px;
+                height: 1.2em;
+                margin-left: 2px;
+                animation: blink 1s infinite;
+                opacity: 0;
+            }
+
+            .logo-cursor.active {
+                opacity: 1;
+            }
+            .logo-cursor.fade-out {
+                animation: fadeOut 0.5s ease-out forwards;
+            }
+
+            @keyframes blink {
+                0%,
+                50% {
+                    opacity: 1;
+                }
+                51%,
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                }
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #888;
+                font-weight: 400;
+                transition: all 0.3s ease;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            .nav-links a:hover {
+                color: #e0e0e0;
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .github-link,
+            .carrd-link {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                border: 1px solid #333;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #888;
+                transition: all 0.3s ease;
+            }
+
+            .github-link:hover {
+                border-color: #ff6b6b;
+                color: #ff6b6b;
+            }
+            .carrd-link:hover {
+                border-color: #36a2eb;
+                color: #36a2eb;
+            }
+
+            .nav-icon {
+                width: 16px;
+                height: 16px;
+                fill: currentColor;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .hero {
+                text-align: center;
+                height: calc(100vh - 80px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+            }
+
+            .hero h1 {
+                font-size: 5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: #fff;
+                font-family: "JetBrains Mono", monospace;
+                text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+                animation: glow 3s ease-in-out infinite alternate;
+                position: relative;
+            }
+
+            .title-cursor {
+                display: inline-block;
+                background-color: #fff;
+                width: 3px;
+                height: 1em;
+                margin-left: 4px;
+                animation: blink 1s infinite;
+                opacity: 0;
+            }
+
+            .title-cursor.active {
+                opacity: 1;
+            }
+            .title-cursor.fade-out {
+                animation: fadeOut 0.5s ease-out forwards;
+            }
+
+            @keyframes glow {
+                0% {
+                    text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+                }
+                100% {
+                    text-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+                }
+            }
+
+            .hero .subtitle {
+                font-size: 1.5rem;
+                color: #888;
+                margin-bottom: 0.5rem;
+                position: relative;
+                min-height: 1.8rem;
+            }
+
+            .subtitle-cursor {
+                display: inline-block;
+                background-color: #888;
+                width: 2px;
+                height: 1em;
+                margin-left: 2px;
+                animation: blink 1s infinite;
+            }
+
+            .status-text {
+                font-family: "JetBrains Mono", monospace;
+                color: #666;
+                font-size: 1rem;
+                margin-top: 2rem;
+            }
+
+            .animate-in {
+                opacity: 0;
+            }
+            .animate-in.visible {
+                opacity: 1;
+            }
+
+            /* slide-in only */
+            .slide-left {
+                transform: translateX(-60px);
+            }
+            .slide-left.visible {
+                transform: translateX(0);
+                transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .slide-right {
+                transform: translateX(60px);
+            }
+            .slide-right.visible {
+                transform: translateX(0);
+                transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .slide-up {
+                transform: translateY(40px);
+            }
+            .slide-up.visible {
+                transform: translateY(0);
+                transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            /* floating only applies to wrapper */
+            .float-wrapper {
+                animation: gentleFloat 8s ease-in-out infinite;
+                animation-delay: 1.5s;
+            }
+
+            @keyframes gentleFloat {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-4px);
+                }
+            }
+
+            .content-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+                margin-bottom: 3rem;
+                margin-top: 4rem;
+            }
+
+            .card {
+                background: #111;
+                border: 1px solid #222;
+                border-radius: 12px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+            }
+
+            .card:hover {
+                border-color: #333;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .card h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .card-icon {
+                font-size: 1.2rem;
+            }
+
+            .about-text {
+                color: #ccc;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+            }
+
+            .about-text:last-child {
+                margin-bottom: 0;
+                font-style: italic;
+                color: #888;
+                font-size: 0.9rem;
+            }
+
+            .discord-container {
+                text-align: center;
+            }
+            .discord-status {
+                border-radius: 12px;
+                transition: transform 0.3s ease;
+                max-width: 100%;
+                height: auto;
+            }
+            .discord-status:hover {
+                transform: scale(1.02);
+            }
+
+            .likes-dislikes-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .likes-card,
+            .dislikes-card {
+                background: #111;
+                border: 1px solid #222;
+                border-radius: 12px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+            }
+
+            .likes-card {
+                border-left: 4px solid #4ade80;
+            }
+            .dislikes-card {
+                border-left: 4px solid #f87171;
+            }
+
+            .likes-card:hover,
+            .dislikes-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .likes-card h3 {
+                color: #4ade80;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .dislikes-card h3 {
+                color: #f87171;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .list {
+                list-style: none;
+            }
+            .list li {
+                padding: 0.5rem 0;
+                color: #ccc;
+                position: relative;
+                padding-left: 2rem;
+                transition: color 0.3s ease;
+            }
+            .list li:hover {
+                color: #fff;
+            }
+
+            .likes-card .list li::before {
+                content: "▶";
+                position: absolute;
+                left: 0;
+                color: #4ade80;
+                font-size: 0.8rem;
+            }
+            .dislikes-card .list li::before {
+                content: "▶";
+                position: absolute;
+                left: 0;
+                color: #f87171;
+                font-size: 0.8rem;
+            }
+
+            .shrine {
+                background: #111;
+                border: 1px solid #222;
+                border-radius: 12px;
+                padding: 2rem;
+                text-align: center;
+                margin-bottom: 3rem;
+                transition: all 0.3s ease;
+            }
+            .shrine:hover {
+                border-color: #333;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+            .shrine h2 {
+                color: #fff;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            .shrine-text {
+                color: #888;
+                font-style: italic;
+                margin-bottom: 1rem;
+                line-height: 1.6;
+            }
+            .shrine-emoji {
+                font-size: 2rem;
+                margin: 1rem 0;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 2rem 0;
+                color: #666;
+                font-size: 0.9rem;
+                border-top: 1px solid #222;
+                margin-top: 3rem;
+            }
+
+            @media (max-width: 968px) {
+                .hero h1 {
+                    font-size: 4rem;
+                }
+            }
+            @media (max-width: 768px) {
+                body {
+                    padding-top: 120px;
+                }
+                .navbar {
+                    flex-direction: column;
+                    padding: 1rem;
+                }
+                .nav-links {
+                    margin-top: 1rem;
+                    gap: 1rem;
+                }
+                .hero {
+                    height: calc(100vh - 120px);
+                }
+                .hero h1 {
+                    font-size: 3rem;
+                }
+                .content-grid {
+                    grid-template-columns: 1fr;
+                }
+                .likes-dislikes-grid {
+                    grid-template-columns: 1fr;
+                }
+                .container {
+                    padding: 0 1rem;
+                }
+            }
+            @media (max-width: 480px) {
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+                .nav-links {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .card {
+                    padding: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+                <span id="logo-text"></span>
+                <span class="logo-cursor" id="logo-cursor"></span>
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="https://github.com/CastyLoz17" class="github-link"
+                    >GitHub</a
+                >
+                <a href="https://downright-silly.carrd.co" class="carrd-link"
+                    >Carrd</a
+                >
+            </div>
+        </nav>
+
+        <div class="container">
+            <section class="hero">
+                <h1>
+                    <span id="title-text"></span>
+                    <span class="title-cursor" id="title-cursor"></span>
+                </h1>
+                <div class="subtitle">
+                    <span id="subtitle-text"></span>
+                    <span class="subtitle-cursor" id="subtitle-cursor"></span>
+                </div>
+                <div class="status-text">
+                    status: full of good vibes • companion: one snuggly blajjy
+                </div>
+            </section>
+
+            <div class="content-grid">
+                <div class="card animate-in slide-left" id="about">
+                    <div class="float-wrapper">
+                        <h2>
+                            <span class="card-icon">👋</span> hiiii i'm casty
+                            :3c
+                        </h2>
+                        <p class="about-text">
+                            dictionary definition of silly!
+                        </p>
+                        <p class="about-text">
+                            i make silly code n backend mischief
+                        </p>
+                        <p class="about-text">ultimate chaotic good cat</p>
+                        <p class="about-text">blahaj supremacy >:3</p>
+                        <p class="about-text">
+                            (please do not feed me bugs or i *will* compile
+                            them)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card discord-container animate-in slide-right">
+                    <div class="float-wrapper">
+                        <h2>
+                            <span class="card-icon">💬</span> Discord Status
+                        </h2>
+                        <a href="https://discord.com/users/1023198686173474836">
+                            <img
+                                class="discord-status"
+                                src="https://lanyard.cnrad.dev/api/1023198686173474836?bg=111111"
+                                alt="Discord Status"
+                            />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="likes-dislikes-grid">
+                <div class="likes-card animate-in slide-left">
+                    <div class="float-wrapper">
+                        <h3><span>✨</span> likes</h3>
+                        <ul class="list">
+                            <li>coding at 3am</li>
+                            <li>clean, minimal aesthetics</li>
+                            <li>blahaj cuddles</li>
+                            <li>backend chaos</li>
+                            <li>silly memes</li>
+                            <li>lawful good vibes</li>
+                            <li>cat energy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dislikes-card animate-in slide-right">
+                    <div class="float-wrapper">
+                        <h3><span>💀</span> dislikes</h3>
+                        <ul class="list">
+                            <li>production bugs</li>
+                            <li>merge conflicts</li>
+                            <li>broken dependencies</li>
+                            <li>bad documentation</li>
+                            <li>legacy code</li>
+                            <li>empty coffee cups</li>
+                            <li>imposter syndrome</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shrine animate-in slide-up">
+                <div class="float-wrapper">
+                    <h2><span>🦈</span> blahaj shrine</h2>
+                    <p class="shrine-text">
+                        blessed be the blahaj, keeper of comfort and guardian of
+                        cozy vibes
+                    </p>
+                    <div class="shrine-emoji">🦈</div>
+                    <p class="shrine-text">
+                        "in blahaj we trust" - ancient programmer wisdom
+                    </p>
+                </div>
+            </div>
+
+            <footer class="footer animate-in slide-up">
+                <div class="float-wrapper">
+                    <p>made with ❤️ and way too much coffee</p>
+                </div>
+            </footer>
+        </div>
+
+        <script>
+            function typeWriter(element, text, speed, callback) {
+                let i = 0;
+                element.textContent = "";
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                type();
+            }
+
+            function backspace(element, callback) {
+                const text = element.textContent;
+                let i = text.length;
+                function erase() {
+                    if (i > 0) {
+                        element.textContent = text.substring(0, i - 1);
+                        i--;
+                        setTimeout(erase, 30);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                erase();
+            }
+
+            const subtitleQuotes = [
+                "ruining git commits since 2011™",
+                "bite first, questions later",
+                "caffeinated chaos engineer",
+                "smaller than three, colon three c supremacy",
+                "certified silly goose",
+            ];
+
+            let currentQuoteIndex = 0;
+
+            function cycleSubtitle() {
+                const subtitleText = document.getElementById("subtitle-text");
+                if (subtitleText.textContent.length > 0) {
+                    backspace(subtitleText, () => {
+                        setTimeout(() => {
+                            currentQuoteIndex =
+                                (currentQuoteIndex + 1) % subtitleQuotes.length;
+                            typeWriter(
+                                subtitleText,
+                                subtitleQuotes[currentQuoteIndex],
+                                50
+                            );
+                        }, 200);
+                    });
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const logoText = document.getElementById("logo-text");
+                const logoCursor = document.getElementById("logo-cursor");
+                const titleText = document.getElementById("title-text");
+                const titleCursor = document.getElementById("title-cursor");
+                const subtitleText = document.getElementById("subtitle-text");
+
+                logoCursor.classList.add("active");
+                typeWriter(logoText, "\\> winden's page", 80, () => {
+                    setTimeout(() => {
+                        logoCursor.classList.add("fade-out");
+                    });
+                });
+
+                typeWriter(titleText, "winden's page", 80, () => {
+                    setTimeout(() => {
+                        titleCursor.classList.remove("active");
+                        titleCursor.classList.add("fade-out");
+                        typeWriter(subtitleText, subtitleQuotes[0], 50);
+                        setTimeout(() => {
+                            setInterval(cycleSubtitle, 5621);
+                        }, 3000);
+                    }, 800);
+                });
+
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px",
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                        }
+                    });
+                }, observerOptions);
+
+                document
+                    .querySelectorAll(".animate-in")
+                    .forEach((el) => observer.observe(el));
+            });
+        </script>
+    </body>
+</html>
